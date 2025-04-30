@@ -116,8 +116,12 @@
     }
 
     .slider-left, .slider-center {
-      flex: 1;
+      flex: 0 0 50%;
       min-width: 50%;
+    }
+
+    .slider-container {
+      overflow-x: auto;
     }
   }
 </style>
@@ -183,6 +187,7 @@
     goToSlide(nextIndex);
   }, 2000);
 </script>
+
 
 </body>
 </html>
