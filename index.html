@@ -110,20 +110,22 @@
   }
 
   @media (max-width: 768px) {
-    .slider-banner {
-      flex-wrap: nowrap;
-      flex-direction: row;
-    }
-
-    .slider-left, .slider-center {
-      flex: 0 0 50%;
-      min-width: 50%;
-    }
-
-    .slider-container {
-      overflow-x: auto;
-    }
+  .slider-banner {
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
   }
+
+  .slider-left,
+  .slider-center {
+    flex: 0 0 50%;
+    min-width: 50%;
+  }
+
+  .slider-container {
+    overflow-x: auto;
+  }
+}
+
 </style>
 
 <div class="slider-container">
