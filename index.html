@@ -39,7 +39,7 @@
     opacity: 0;
     transition: opacity 0.5s ease-in-out;
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     justify-content: space-between;
     align-items: center;
     background-color: #fff;
@@ -111,12 +111,13 @@
 
   @media (max-width: 768px) {
     .slider-banner {
-      flex-direction: column;
+      flex-wrap: nowrap;
+      flex-direction: row;
     }
 
-    .slider-left, .slider-center, .slider-right {
-      min-width: 100%;
-      padding: 10px;
+    .slider-left, .slider-center {
+      flex: 1;
+      min-width: 50%;
     }
   }
 </style>
