@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gift Box Banner</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #fafafa;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Εδώ ξεκινά ο slider -->
+<style>
+  .slider-container {
+    max-width: 1000px;
+    margin: 40px auto;
+    position: relative;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+    background: #fff;
+  }
+
+  .slider-wrapper {
+    position: relative;
+  }
+
+  .slider-banner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    padding: 2px;
+    box-sizing: border-box;
+  }
+
+  .slider-banner.active {
+    opacity: 1;
+    position: relative;
+    z-index: 1;
+  }
+
+  .slider-left, .slider-center, .slider-right {
+    flex: 1;
+    padding: 20px;
+    min-width: 300px;
+    box-sizing: border-box;
+    text-align: center;
+  }
+
+  .slider-left h2,
+  .slider-left p,
+  .slider-left span,
+  .slider-left .btn {
+    display: block;
+  }
+
+  .slider-right {
+    display: none;
+  }
+
+  .slider-center img {
+    width: 100%;
+    max-height: 280px;
+    object-fit: cover;
+    border-radius: 6px;
+  }
+
+  .btn {
+    margin-top: 15px;
+    background-color: #aee0e2;
+    color: #000;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: bold;
+    display: inline-block;
+  }
+
+  .dots {
+    text-align: center;
+    margin-top: 1px;
+  }
+
+  .dot {
+    height: 10px;
+    width: 10px;
+    margin: 0 5px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    cursor: pointer;
+  }
+
+  .dot.active {
+    background-color: #555;
+  }
+
+  @media (max-width: 768px) {
+    .slider-banner {
+      flex-direction: column;
+    }
+
+    .slider-left, .slider-center, .slider-right {
+      min-width: 100%;
+      padding: 10px;
+    }
+  }
+</style>
+
+<div class="slider-container">
+  <div class="slider-wrapper">
+    <div class="slider-banner active">
+      <div class="slider-left">
+        <h2>✨ Δημιούργησέ το Μόνη σου!</h2>
+        <p>Φτιάξε το δικό σου προσωποποιημένο Gift Box</p>
+        <span>Διάλεξε βρεφικά, γράψε όνομα &amp; στοιχεία και εμείς το κάνουμε μαγικό!</span><br>
+        <a href="#" class="btn">🛠️ Ξεκίνησε Τώρα</a>
+      </div>
+      <div class="slider-center">
+        <img src="https://cdn.shopify.com/s/files/1/0596/2868/3434/files/banner2.png?v=1746013340" alt="Banner Slide 1">
+      </div>
+    </div>
+    <div class="slider-banner">
+      <div class="slider-left">
+        <h2>🎁 Πρωτότυπα Δώρα για Μωρά!</h2>
+        <p>Έτοιμες, ξεχωριστές συνθέσεις με βρεφικά αξεσουάρ!</p>
+        <span>Ιδανικά για baby shower, γέννηση, βάφτιση ή γενέθλια!</span><br>
+        <a href="#" class="btn">👉 Δες τα Όλα</a>
+      </div>
+      <div class="slider-center">
+        <img src="https://cdn.shopify.com/s/files/1/0596/2868/3434/files/banner3.png?v=1746014575" alt="Banner Slide 2">
+      </div>
+    </div>
+    <div class="slider-banner">
+      <div class="slider-left">
+        <h2>🛍️ Όλος ο Κόσμος του FairyGift</h2>
+        <p>Δώρα, παιχνίδια &amp; αξεσουάρ για μικρούς και μικρότερους</p>
+        <span>Ανακάλυψε μοναδικά προϊόντα με άποψη και φροντίδα</span><br>
+        <a href="#" class="btn">🔎 Εξερεύνησε το E-shop μας</a>
+      </div>
+      <div class="slider-center">
+        <img src="https://cdn.shopify.com/s/files/1/0596/2868/3434/files/eshopbanner.png?v=1746014575" alt="Banner Slide 3">
+      </div>
+    </div>
+  </div>
+  <div class="dots">
+    <span class="dot active" onclick="goToSlide(0)"></span>
+    <span class="dot" onclick="goToSlide(1)"></span>
+    <span class="dot" onclick="goToSlide(2)"></span>
+  </div>
+</div>
+
+<script>
+  let currentIndex = 0;
+  const slides = document.querySelectorAll('.slider-banner');
+  const dots = document.querySelectorAll('.dot');
+
+  function goToSlide(index) {
+    slides.forEach(slide => slide.classList.remove('active'));
+    dots.forEach(dot => dot.classList.remove('active'));
+    slides[index].classList.add('active');
+    dots[index].classList.add('active');
+    currentIndex = index;
+  }
+
+  setInterval(() => {
+    let nextIndex = (currentIndex + 1) % slides.length;
+    goToSlide(nextIndex);
+  }, 2000);
+</script>
+
+</body>
+</html>
