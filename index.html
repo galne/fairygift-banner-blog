@@ -20,7 +20,7 @@
     width: 100%;
     margin: 40px auto;
     position: relative;
-    overflow-x: auto;
+    overflow: hidden;
     font-family: Arial, sans-serif;
     border-radius: 8px;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
@@ -36,27 +36,27 @@
   .slider-banner {
     flex: 0 0 100%;
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
+    justify-content: center;
     align-items: center;
     padding: 20px;
     box-sizing: border-box;
   }
 
   .slider-left, .slider-center {
-    flex: 1;
-    min-width: 0;
+    width: 100%;
     text-align: center;
     padding: 10px;
   }
 
   .slider-left h2 {
-    font-size: clamp(20px, 5vw, 26px);
+    font-size: 20px;
     margin-bottom: 10px;
   }
 
   .slider-left p,
   .slider-left span {
-    font-size: clamp(14px, 4vw, 18px);
+    font-size: 16px;
     line-height: 1.4;
   }
 
@@ -69,12 +69,13 @@
     border-radius: 6px;
     font-weight: bold;
     display: inline-block;
-    font-size: clamp(14px, 4vw, 18px);
+    font-size: 16px;
   }
 
   .slider-center img {
     width: 100%;
-    max-height: 240px;
+    max-width: 300px;
+    height: auto;
     object-fit: contain;
     border-radius: 6px;
   }
@@ -159,7 +160,6 @@
     goToSlide(nextIndex);
   }, 3000);
 </script>
-
 
 
 
