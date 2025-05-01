@@ -9,120 +9,124 @@
       margin: 0;
       padding: 0;
       background: #fafafa;
+      font-family: Arial, sans-serif;
+    }
+
+    .slider-container {
+      max-width: 1000px;
+      margin: 40px auto;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+      overflow: hidden;
+    }
+
+    .slider-wrapper {
+      width: 100%;
+    }
+
+    .slider-banner {
+      display: none;
+      flex-wrap: nowrap;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .slider-banner.active {
+      display: flex;
+    }
+
+    .slider-left, .slider-center {
+      width: 50%;
+      box-sizing: border-box;
+      padding: 20px;
+    }
+
+    .slider-left h2 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .slider-left p,
+    .slider-left span {
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    .btn {
+      margin-top: 15px;
+      background-color: #aee0e2;
+      color: #000;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: bold;
+      display: inline-block;
+    }
+
+    .slider-center img {
+      width: 100%;
+      max-height: 240px;
+      object-fit: contain;
+      border-radius: 6px;
+    }
+
+    .dots {
+      text-align: center;
+      margin-top: 10px;
+      padding-bottom: 15px;
+    }
+
+    .dot {
+      height: 10px;
+      width: 10px;
+      margin: 0 5px;
+      background-color: #bbb;
+      border-radius: 50%;
+      display: inline-block;
+      cursor: pointer;
+    }
+
+    .dot.active {
+      background-color: #555;
+    }
+
+    @media (max-width: 768px) {
+      .slider-banner {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .slider-left, .slider-center {
+        width: 100%;
+        padding: 10px;
+      }
+
+      .slider-center img {
+        max-height: 200px;
+      }
+
+      .slider-left h2 {
+        font-size: 20px;
+      }
+
+      .slider-left p, .slider-left span {
+        font-size: 14px;
+      }
+
+      .btn {
+        font-size: 14px;
+        padding: 8px 16px;
+      }
     }
   </style>
 </head>
 <body>
 
-<!-- Εδώ ξεκινά ο slider -->
-<style>
-  .slider-container {
-    max-width: 1000px;
-    margin: 40px auto;
-    position: relative;
-    overflow: hidden;
-    font-family: Arial, sans-serif;
-    border-radius: 8px;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
-    background: #fff;
-  }
-
-  .slider-wrapper {
-    position: relative;
-  }
-
-  .slider-banner {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #fff;
-    padding: 2px;
-    box-sizing: border-box;
-  }
-
-  .slider-banner.active {
-    opacity: 1;
-    position: relative;
-    z-index: 1;
-  }
-
-  .slider-left, .slider-center, .slider-right {
-    flex: 1;
-    padding: 20px;
-    min-width: 300px;
-    box-sizing: border-box;
-    text-align: center;
-  }
-
-  .slider-left h2,
-  .slider-left p,
-  .slider-left span,
-  .slider-left .btn {
-    display: block;
-  }
-
-  .slider-right {
-    display: none;
-  }
-
-  .slider-center img {
-    width: 100%;
-    max-height: 280px;
-    object-fit: cover;
-    border-radius: 6px;
-  }
-
-  .btn {
-    margin-top: 15px;
-    background-color: #aee0e2;
-    color: #000;
-    padding: 10px 20px;
-    text-decoration: none;
-    border-radius: 6px;
-    font-weight: bold;
-    display: inline-block;
-  }
-
-  .dots {
-    text-align: center;
-    margin-top: 1px;
-  }
-
-  .dot {
-    height: 10px;
-    width: 10px;
-    margin: 0 5px;
-    background-color: #bbb;
-    border-radius: 50%;
-    display: inline-block;
-    cursor: pointer;
-  }
-
-  .dot.active {
-    background-color: #555;
-  }
-
-  @media (max-width: 768px) {
-    .slider-banner {
-      flex-direction: column;
-    }
-
-    .slider-left, .slider-center, .slider-right {
-      min-width: 100%;
-      padding: 10px;
-    }
-  }
-</style>
-
 <div class="slider-container">
-  <div class="slider-wrapper">
+  <div class="slider-wrapper" id="sliderWrapper">
     <div class="slider-banner active">
       <div class="slider-left">
         <h2>✨ Δημιούργησέ το Μόνη σου!</h2>
@@ -134,6 +138,7 @@
         <img src="https://cdn.shopify.com/s/files/1/0596/2868/3434/files/banner2.png?v=1746013340" alt="Banner Slide 1">
       </div>
     </div>
+
     <div class="slider-banner">
       <div class="slider-left">
         <h2>🎁 Πρωτότυπα Δώρα για Μωρά!</h2>
@@ -145,6 +150,7 @@
         <img src="https://cdn.shopify.com/s/files/1/0596/2868/3434/files/banner3.png?v=1746014575" alt="Banner Slide 2">
       </div>
     </div>
+
     <div class="slider-banner">
       <div class="slider-left">
         <h2>🛍️ Όλος ο Κόσμος του FairyGift</h2>
@@ -157,6 +163,7 @@
       </div>
     </div>
   </div>
+
   <div class="dots">
     <span class="dot active" onclick="goToSlide(0)"></span>
     <span class="dot" onclick="goToSlide(1)"></span>
@@ -178,9 +185,10 @@
   }
 
   setInterval(() => {
-    let nextIndex = (currentIndex + 1) % slides.length;
+    const nextIndex = (currentIndex + 1) % slides.length;
     goToSlide(nextIndex);
   }, 2000);
 </script>
+
 </body>
 </html>
