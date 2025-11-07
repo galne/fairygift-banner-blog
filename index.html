@@ -1,181 +1,253 @@
-<!-- FairyGift – Blog Banner Slider (v3.1 mobile-tuned) -->
-<div class="fg3-slider" lang="el" dir="ltr" data-autoplay="true" data-interval="4000" aria-roledescription="carousel">
-  <div class="fg3-viewport" tabindex="0" aria-live="polite">
-    <div class="fg3-track">
-      <!-- Slide 1 -->
-      <section class="fg3-slide" aria-roledescription="slide" aria-label="1">
-        <div class="fg3-left">
-          <h2>✨ Δημιούργησέ το Μόνη σου</h2>
-          <p class="fg3-lead">Φτιάξε το δικό σου προσωποποιημένο Gift Box!</p>
-          <p class="fg3-sub">Διάλεξε βρεφικά, γράψε όνομα &amp; στοιχεία γέννησης και εμείς το κάνουμε μαγικό!</p>
-          <a class="fg3-btn" href="https://fairygift.gr/collections/custom-gift-box-prosopopoiimeno-doro-neogenito-moro-vaptisi-genethlia" target="_blank" rel="noopener">🛠️ Ξεκίνησε Τώρα</a>
-        </div>
-        <div class="fg3-right">
-          <img loading="lazy" decoding="async" src="https://cdn.shopify.com/s/files/1/0596/2868/3434/files/banner2b.png" alt="Παράδειγμα προσωποποιημένου Gift Box">
-        </div>
-      </section>
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FairyGift – Blog Banner Slider (v3.2)</title>
+  <style>
+    /* ===== FairyGift v3.2 – mobile image near CTA, no cropping ===== */
+    .fg3-slider{
+      --fg3-accent:#6b46ff;
+      --fg3-accent2:#ff88cc;
+      --fg3-grad:linear-gradient(135deg,var(--fg3-accent),#9c6bff 55%,var(--fg3-accent2));
+      --fg3-bg:#0b0b12;
+      --fg3-card:#fff;
+      --fg3-ink:#111;
+      --fg3-ink-sub:#666;
+      --fg3-r:18px;
+      --fg3-shadow:0 8px 28px rgba(0,0,0,.08);
+      --fg3-interval:4000ms;
+      --fg3-h-d:360px;
+      max-width:1060px;
+      margin:28px auto;
+      padding:12px;
+      background:
+        radial-gradient(900px 300px at 15% -10%, rgba(107,70,255,.18), transparent 60%),
+        radial-gradient(800px 280px at 85% 110%, rgba(255,136,204,.16), transparent 60%),
+        var(--fg3-bg);
+      border-radius:calc(var(--fg3-r)+8px);
+      box-shadow:var(--fg3-shadow);
+      color:#fff;
+      overflow:hidden;
+    }
+    @media (prefers-color-scheme: light){
+      .fg3-slider{
+        --fg3-bg:#f7f7fb; --fg3-card:#fff; --fg3-ink:#17171b; --fg3-ink-sub:#5a5a66;
+        box-shadow:0 6px 22px rgba(0,0,0,.06);
+      }
+    }
 
-      <!-- Slide 2 -->
-      <section class="fg3-slide" aria-roledescription="slide" aria-label="2">
-        <div class="fg3-left">
-          <h2>🎁 Πρωτότυπα Δώρα για Μωρά</h2>
-          <p class="fg3-lead">Έτοιμες, ξεχωριστές συνθέσεις με βρεφικά αξεσουάρ!</p>
-          <p class="fg3-sub">Ιδανικά για baby shower, γέννηση, βάφτιση ή γενέθλια!</p>
-          <a class="fg3-btn fg3-btn-ghost" href="https://fairygift.gr/collections/prototypa-xrisima-dora-neogennita-genethlia-giorti-vaptisi-mora-vrefi" target="_blank" rel="noopener">👉 Δες τα Όλα</a>
-        </div>
-        <div class="fg3-right">
-          <img loading="lazy" decoding="async" src="https://cdn.shopify.com/s/files/1/0596/2868/3434/files/banner3.png?v=1746014575" alt="Έτοιμες συνθέσεις δώρων για μωρά">
-        </div>
-      </section>
+    .fg3-viewport{
+      position:relative;
+      background:var(--fg3-card);
+      border-radius:var(--fg3-r);
+      overflow:hidden;
+      height:var(--fg3-h-d);
+    }
+    @media (max-width:768px){
+      /* σε mobile αφήνουμε το ύψος να προσαρμοστεί */
+      .fg3-viewport{height:auto;min-height:220px}
+    }
 
-      <!-- Slide 3 -->
-      <section class="fg3-slide" aria-roledescription="slide" aria-label="3">
-        <div class="fg3-left">
-          <h2>🛍️ Όλος ο Κόσμος του FairyGift</h2>
-          <p class="fg3-lead">Βρεφικά αξεσουάρ &amp; παιχνίδια για μικρούς και μικρότερους!</p>
-          <p class="fg3-sub">Ανακάλυψε μοναδικά προϊόντα με άποψη και φροντίδα!</p>
-          <a class="fg3-btn" href="https://fairygift.gr/collections/e-shop" target="_blank" rel="noopener">🔎 Εξερεύνησε το E-shop μας</a>
-        </div>
-        <div class="fg3-right">
-          <img loading="lazy" decoding="async" src="https://cdn.shopify.com/s/files/1/0596/2868/3434/files/eshopbanner.png?v=1746014575" alt="Προϊόντα από το FairyGift e-shop">
-        </div>
-      </section>
+    /* Track/slides */
+    .fg3-track{display:flex;height:100%;will-change:transform;transition:transform .6s cubic-bezier(.22,.8,.24,1)}
+    .fg3-slide{
+      flex:0 0 auto;height:100%;
+      display:grid;grid-template-columns:1.05fr .95fr;gap:16px;align-items:center;
+      padding:20px;color:var(--fg3-ink)
+    }
+
+    /* Text */
+    .fg3-left h2{margin:0 0 6px;font-weight:800;letter-spacing:-.02em;font-size:clamp(18px,2.1vw,26px);line-height:1.15}
+    .fg3-lead{margin:0 0 4px;font-size:clamp(14px,1.5vw,16px)}
+    .fg3-sub{margin:0;color:var(--fg3-ink-sub);font-size:clamp(13px,1.4vw,15px)}
+
+    /* Button */
+    .fg3-btn{
+      display:inline-block;margin-top:10px;background:var(--fg3-grad);color:#fff;text-decoration:none;
+      border:none;border-radius:999px;padding:9px 12px;font-weight:800;
+      box-shadow:0 6px 16px rgba(107,70,255,.28);transition:transform .18s, box-shadow .18s
+    }
+    .fg3-btn:hover{transform:translateY(-1px);box-shadow:0 10px 22px rgba(107,70,255,.36)}
+    .fg3-btn-ghost{background:#fff;color:var(--fg3-accent);outline:2px solid rgba(107,70,255,.25)}
+
+    /* Image */
+    .fg3-right{display:flex;align-items:center;justify-content:center;height:100%}
+    .fg3-right img{
+      max-width:100%;max-height:100%;height:auto;object-fit:contain;border-radius:12px;
+      filter:drop-shadow(0 8px 18px rgba(0,0,0,.08))
+    }
+
+    /* === MOBILE FIXES === */
+    @media (max-width:768px){
+      /* grid χωρίς 1fr -> η εικόνα κάθεται ακριβώς κάτω από CTA */
+      .fg3-slide{
+        grid-template-columns:1fr;
+        grid-template-rows:auto auto;
+        align-content:start;
+        gap:8px;
+        padding:12px;
+      }
+      .fg3-left h2{font-size:16px}
+      .fg3-lead{font-size:13.5px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+      .fg3-sub{font-size:12.5px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+      .fg3-btn{padding:7px 10px;font-size:12.5px;margin-top:8px}
+
+      /* εικόνα κοντά στο κουμπί, χωρίς κόψιμο */
+      .fg3-right{
+        height:auto;align-items:flex-start;justify-content:flex-start;margin-top:6px;
+      }
+      .fg3-right img{
+        width:100%;height:auto;max-height:clamp(120px, 40vw, 180px);object-fit:contain;
+      }
+
+      .fg3-arrow{display:none}
+    }
+
+    /* Arrows (desktop) */
+    .fg3-arrow{
+      position:absolute;top:50%;transform:translateY(-50%);
+      width:38px;height:38px;border:none;border-radius:50%;
+      background:rgba(255,255,255,.95);color:#222;display:grid;place-items:center;cursor:pointer;
+      box-shadow:0 4px 12px rgba(0,0,0,.12);transition:transform .15s
+    }
+    .fg3-arrow:hover{transform:translateY(-50%) scale(1.05)}
+    .fg3-prev{left:10px}.fg3-next{right:10px}
+
+    /* Dots */
+    .fg3-dots{display:flex;justify-content:center;gap:10px;margin:12px auto 2px}
+    .fg3-dot{--size:10px;position:relative;width:calc(var(--size)*5);height:var(--size);background:rgba(255,255,255,.45);border:none;border-radius:999px;cursor:pointer;overflow:hidden}
+    .fg3-dot .fg3-fill{position:absolute;inset:0;background:var(--fg3-grad);transform-origin:left;transform:scaleX(0)}
+    .fg3-dot.is-active .fg3-fill{transform:scaleX(1);transition:transform var(--fg3-interval) linear}
+    .fg3-dot:focus-visible{outline:2px solid var(--fg3-accent)}
+
+    @media (prefers-reduced-motion: reduce){
+      .fg3-track,.fg3-dot .fg3-fill{transition:none !important}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== SLIDER START ===== -->
+  <div class="fg3-slider" lang="el" dir="ltr" data-autoplay="true" data-interval="4000" aria-roledescription="carousel">
+    <div class="fg3-viewport" tabindex="0" aria-live="polite">
+      <div class="fg3-track">
+        <!-- Slide 1 -->
+        <section class="fg3-slide" aria-roledescription="slide" aria-label="1">
+          <div class="fg3-left">
+            <h2>✨ Δημιούργησέ το Μόνη σου</h2>
+            <p class="fg3-lead">Φτιάξε το δικό σου προσωποποιημένο Gift Box!</p>
+            <p class="fg3-sub">Διάλεξε βρεφικά, γράψε όνομα &amp; στοιχεία γέννησης και εμείς το κάνουμε μαγικό!</p>
+            <a class="fg3-btn" href="https://fairygift.gr/collections/custom-gift-box-prosopopoiimeno-doro-neogenito-moro-vaptisi-genethlia" target="_blank" rel="noopener">🛠️ Ξεκίνησε Τώρα</a>
+          </div>
+          <div class="fg3-right">
+            <img loading="lazy" decoding="async" src="https://cdn.shopify.com/s/files/1/0596/2868/3434/files/banner2b.png" alt="Παράδειγμα προσωποποιημένου Gift Box">
+          </div>
+        </section>
+
+        <!-- Slide 2 -->
+        <section class="fg3-slide" aria-roledescription="slide" aria-label="2">
+          <div class="fg3-left">
+            <h2>🎁 Πρωτότυπα Δώρα για Μωρά</h2>
+            <p class="fg3-lead">Έτοιμες, ξεχωριστές συνθέσεις με βρεφικά αξεσουάρ!</p>
+            <p class="fg3-sub">Ιδανικά για baby shower, γέννηση, βάφτιση ή γενέθλια!</p>
+            <a class="fg3-btn fg3-btn-ghost" href="https://fairygift.gr/collections/prototypa-xrisima-dora-neogennita-genethlia-giorti-vaptisi-mora-vrefi" target="_blank" rel="noopener">👉 Δες τα Όλα</a>
+          </div>
+          <div class="fg3-right">
+            <img loading="lazy" decoding="async" src="https://cdn.shopify.com/s/files/1/0596/2868/3434/files/banner3.png?v=1746014575" alt="Έτοιμες συνθέσεις δώρων για μωρά">
+          </div>
+        </section>
+
+        <!-- Slide 3 -->
+        <section class="fg3-slide" aria-roledescription="slide" aria-label="3">
+          <div class="fg3-left">
+            <h2>🛍️ Όλος ο Κόσμος του FairyGift</h2>
+            <p class="fg3-lead">Βρεφικά αξεσουάρ &amp; παιχνίδια για μικρούς και μικρότερους!</p>
+            <p class="fg3-sub">Ανακάλυψε μοναδικά προϊόντα με άποψη και φροντίδα!</p>
+            <a class="fg3-btn" href="https://fairygift.gr/collections/e-shop" target="_blank" rel="noopener">🔎 Εξερεύνησε το E-shop μας</a>
+          </div>
+          <div class="fg3-right">
+            <img loading="lazy" decoding="async" src="https://cdn.shopify.com/s/files/1/0596/2868/3434/files/eshopbanner.png?v=1746014575" alt="Προϊόντα από το FairyGift e-shop">
+          </div>
+        </section>
+      </div>
+
+      <!-- Arrows (κρυφά σε mobile) -->
+      <button class="fg3-arrow fg3-prev" aria-label="Προηγούμενο">‹</button>
+      <button class="fg3-arrow fg3-next" aria-label="Επόμενο">›</button>
     </div>
 
-    <!-- Arrows (κρυφά σε mobile) -->
-    <button class="fg3-arrow fg3-prev" aria-label="Προηγούμενο">‹</button>
-    <button class="fg3-arrow fg3-next" aria-label="Επόμενο">›</button>
+    <!-- Dots -->
+    <div class="fg3-dots" role="tablist" aria-label="Πλοήγηση slides">
+      <button class="fg3-dot is-active" role="tab" aria-selected="true"><span class="fg3-fill"></span></button>
+      <button class="fg3-dot" role="tab" aria-selected="false"><span class="fg3-fill"></span></button>
+      <button class="fg3-dot" role="tab" aria-selected="false"><span class="fg3-fill"></span></button>
+    </div>
   </div>
+  <!-- ===== SLIDER END ===== -->
 
-  <!-- Dots -->
-  <div class="fg3-dots" role="tablist" aria-label="Πλοήγηση slides">
-    <button class="fg3-dot is-active" role="tab" aria-selected="true"><span class="fg3-fill"></span></button>
-    <button class="fg3-dot" role="tab" aria-selected="false"><span class="fg3-fill"></span></button>
-    <button class="fg3-dot" role="tab" aria-selected="false"><span class="fg3-fill"></span></button>
-  </div>
-</div>
+  <script>
+    // Init ΟΛΑ τα sliders με κλάση .fg3-slider (ασφαλές για iframes)
+    (function initFG3(){
+      const sliders = document.querySelectorAll('.fg3-slider');
+      sliders.forEach(slider => {
+        const viewport = slider.querySelector('.fg3-viewport');
+        const track = slider.querySelector('.fg3-track');
+        const slides = Array.from(slider.querySelectorAll('.fg3-slide'));
+        const dots = Array.from(slider.querySelectorAll('.fg3-dot'));
+        const prev = slider.querySelector('.fg3-prev');
+        const next = slider.querySelector('.fg3-next');
+        const autoplay = slider.dataset.autoplay === 'true';
+        const interval = +slider.dataset.interval || 4000;
+        slider.style.setProperty('--fg3-interval', interval + 'ms');
 
-<style>
-/* ===== FairyGift v3.1 – scoped, pixel-perfect snap ===== */
-.fg3-slider{--fg3-accent:#6b46ff;--fg3-accent2:#ff88cc;--fg3-grad:linear-gradient(135deg,var(--fg3-accent),#9c6bff 55%,var(--fg3-accent2));--fg3-bg:#0b0b12;--fg3-card:#fff;--fg3-ink:#111;--fg3-ink-sub:#666;--fg3-r:18px;--fg3-shadow:0 8px 28px rgba(0,0,0,.08);--fg3-interval:4000ms;--fg3-h-d:360px;--fg3-h-m:280px;max-width:1060px;margin:28px auto;padding:12px;background:
-  radial-gradient(900px 300px at 15% -10%, rgba(107,70,255,.18), transparent 60%),
-  radial-gradient(800px 280px at 85% 110%, rgba(255,136,204,.16), transparent 60%),
-  var(--fg3-bg);border-radius:calc(var(--fg3-r)+8px);box-shadow:var(--fg3-shadow);color:#fff;overflow:hidden}
-@media (prefers-color-scheme: light){.fg3-slider{--fg3-bg:#f7f7fb;--fg3-card:#fff;--fg3-ink:#17171b;--fg3-ink-sub:#5a5a66;box-shadow:0 6px 22px rgba(0,0,0,.06)}}
+        let i = 0, timer = null, paused = false, startX = 0, dx = 0, slideW = 0;
 
-.fg3-viewport{position:relative;background:var(--fg3-card);border-radius:var(--fg3-r);overflow:hidden;height:var(--fg3-h-d)}
-@media (max-width:768px){.fg3-viewport{height:var(--fg3-h-m)}}
+        // pixel-based snap για να μη φαίνεται «φέτα» προηγούμενου slide
+        const sizeSlides = () => {
+          slideW = viewport.clientWidth;
+          slides.forEach(s => s.style.width = slideW + 'px');
+          track.style.width = (slideW * slides.length) + 'px';
+          track.style.transform = `translate3d(${-i * slideW}px,0,0)`;
+        };
 
-/* Track/slides: πλάτη σε px για απόλυτη στοίχιση */
-.fg3-track{display:flex;height:100%;will-change:transform;transition:transform .6s cubic-bezier(.22,.8,.24,1)}
-.fg3-slide{flex:0 0 auto;height:100%;display:grid;grid-template-columns:1.05fr .95fr;gap:16px;align-items:center;padding:20px;color:var(--fg3-ink)}
+        const go = n => {
+          i = (n + slides.length) % slides.length;
+          track.style.transform = `translate3d(${-i * slideW}px,0,0)`;
+          dots.forEach((d, idx) => {
+            d.classList.toggle('is-active', idx === i);
+            d.setAttribute('aria-selected', idx === i ? 'true' : 'false');
+          });
+        };
 
-.fg3-left h2{margin:0 0 6px;font-weight:800;letter-spacing:-.02em;font-size:clamp(18px,2.1vw,26px);line-height:1.15}
-.fg3-lead{margin:0 0 4px;font-size:clamp(14px,1.5vw,16px)}
-.fg3-sub{margin:0;color:var(--fg3-ink-sub);font-size:clamp(13px,1.4vw,15px)}
-.fg3-btn{display:inline-block;margin-top:10px;background:var(--fg3-grad);color:#fff;text-decoration:none;border:none;border-radius:999px;padding:9px 12px;font-weight:800;box-shadow:0 6px 16px rgba(107,70,255,.28);transition:transform .18s, box-shadow .18s}
-.fg3-btn-ghost{background:#fff;color:var(--fg3-accent);outline:2px solid rgba(107,70,255,.25)}
+        const start = () => { if (!autoplay || paused) return; stop(); timer = setInterval(() => go(i+1), interval); };
+        const stop  = () => { if (timer) clearInterval(timer); timer = null; };
 
-.fg3-right{display:flex;align-items:center;justify-content:center;height:100%}
-.fg3-right img{max-width:100%;max-height:100%;height:auto;object-fit:contain;border-radius:12px;filter:drop-shadow(0 8px 18px rgba(0,0,0,.08))}
+        next?.addEventListener('click', () => { go(i+1); start(); });
+        prev?.addEventListener('click', () => { go(i-1); start(); });
+        dots.forEach((d, idx) => d.addEventListener('click', () => { go(idx); start(); }));
 
-/* Mobile: compact κείμενο + εγγυημένη ορατότητα εικόνας */
-@media (max-width:768px){
-  .fg3-slide{grid-template-columns:1fr;grid-template-rows:auto 1fr;gap:8px;padding:12px}
-  .fg3-left h2{font-size:16px}
-  .fg3-lead{font-size:14px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-  .fg3-sub{font-size:13px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-  .fg3-btn{padding:8px 11px;font-size:13px}
-  /* Δίνω “χώρο” στην εικόνα: 56% του viewport ύψους */
-  .fg3-right{height:56%}
-  .fg3-right img{width:auto;max-width:100%;max-height:100%;object-fit:contain}
-}
+        ['mouseenter','focusin'].forEach(ev => slider.addEventListener(ev, () => { paused = true; stop(); }));
+        ['mouseleave','focusout'].forEach(ev => slider.addEventListener(ev, () => { paused = false; start(); }));
+        document.addEventListener('visibilitychange', () => document.hidden ? stop() : start());
 
-/* Arrows */
-.fg3-arrow{position:absolute;top:50%;transform:translateY(-50%);width:38px;height:38px;border:none;border-radius:50%;background:rgba(255,255,255,.95);color:#222;display:grid;place-items:center;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.12);transition:transform .15s}
-.fg3-arrow:hover{transform:translateY(-50%) scale(1.05)}
-.fg3-prev{left:10px}.fg3-next{right:10px}
-@media (max-width:768px){.fg3-arrow{display:none}}
+        viewport.addEventListener('keydown', e => {
+          if (e.key === 'ArrowRight') { go(i+1); start(); }
+          if (e.key === 'ArrowLeft')  { go(i-1); start(); }
+        });
 
-/* Dots με progress */
-.fg3-dots{display:flex;justify-content:center;gap:10px;margin:12px auto 2px}
-.fg3-dot{--size:10px;position:relative;width:calc(var(--size)*5);height:var(--size);background:rgba(255,255,255,.45);border:none;border-radius:999px;cursor:pointer;overflow:hidden}
-.fg3-dot .fg3-fill{position:absolute;inset:0;background:var(--fg3-grad);transform-origin:left;transform:scaleX(0)}
-.fg3-dot.is-active .fg3-fill{transform:scaleX(1);transition:transform var(--fg3-interval) linear}
-.fg3-dot:focus-visible{outline:2px solid var(--fg3-accent)}
+        // swipe
+        viewport.addEventListener('touchstart', e => { startX = e.touches[0].clientX; dx = 0; paused = true; stop(); }, {passive:true});
+        viewport.addEventListener('touchmove',  e => { dx = e.touches[0].clientX - startX; }, {passive:true});
+        viewport.addEventListener('touchend',  () => {
+          if (Math.abs(dx) > 40) { dx < 0 ? go(i+1) : go(i-1); }
+          paused = false; start();
+        });
 
-@media (prefers-reduced-motion: reduce){
-  .fg3-track,.fg3-dot .fg3-fill{transition:none !important}
-}
-</style>
-
-<script>
-(() => {
-  const slider = document.currentScript.previousElementSibling.previousElementSibling; // .fg3-slider
-  const viewport = slider.querySelector('.fg3-viewport');
-  const track = slider.querySelector('.fg3-track');
-  const slides = Array.from(slider.querySelectorAll('.fg3-slide'));
-  const dots = Array.from(slider.querySelectorAll('.fg3-dot'));
-  const prev = slider.querySelector('.fg3-prev');
-  const next = slider.querySelector('.fg3-next');
-  const autoplay = slider.dataset.autoplay === 'true';
-  const interval = +slider.dataset.interval || 4000;
-  slider.style.setProperty('--fg3-interval', interval + 'ms');
-
-  let i = 0, timer = null, paused = false, startX = 0, dx = 0, slideW = 0;
-
-  const sizeSlides = () => {
-    slideW = viewport.clientWidth;
-    slides.forEach(s => { s.style.width = slideW + 'px'; });
-    track.style.width = (slideW * slides.length) + 'px';
-    // Re-apply transform for current slide
-    track.style.transform = `translate3d(${-i * slideW}px,0,0)`;
-  };
-
-  const go = (n) => {
-    i = (n + slides.length) % slides.length;
-    track.style.transform = `translate3d(${-i * slideW}px,0,0)`;
-    dots.forEach((d, idx) => {
-      d.classList.toggle('is-active', idx === i);
-      d.setAttribute('aria-selected', idx === i ? 'true' : 'false');
-    });
-  };
-
-  const start = () => { if (!autoplay || paused) return; stop(); timer = setInterval(() => go(i+1), interval); };
-  const stop = () => { if (timer) clearInterval(timer); timer = null; };
-
-  // Controls
-  next?.addEventListener('click', () => { go(i+1); start(); });
-  prev?.addEventListener('click', () => { go(i-1); start(); });
-  dots.forEach((d, idx) => d.addEventListener('click', () => { go(idx); start(); }));
-
-  // Pause on hover/focus
-  ['mouseenter','focusin'].forEach(ev => slider.addEventListener(ev, () => { paused = true; stop(); }));
-  ['mouseleave','focusout'].forEach(ev => slider.addEventListener(ev, () => { paused = false; start(); }));
-
-  // Visibility
-  document.addEventListener('visibilitychange', () => document.hidden ? stop() : start());
-
-  // Keyboard
-  viewport.addEventListener('keydown', e => {
-    if (e.key === 'ArrowRight') { go(i+1); start(); }
-    if (e.key === 'ArrowLeft')  { go(i-1); start(); }
-  });
-
-  // Touch swipe (horizontal)
-  viewport.addEventListener('touchstart', e => { startX = e.touches[0].clientX; dx = 0; paused = true; stop(); }, {passive:true});
-  viewport.addEventListener('touchmove',  e => { dx = e.touches[0].clientX - startX; }, {passive:true});
-  viewport.addEventListener('touchend',  () => {
-    if (Math.abs(dx) > 40) { dx < 0 ? go(i+1) : go(i-1); }
-    paused = false; start();
-  });
-
-  // Resize observer => slides πάντα ίσα με το viewport (fix για “φέτα” προηγούμενου)
-  const ro = new ResizeObserver(sizeSlides);
-  ro.observe(viewport);
-
-  // Init
-  sizeSlides(); go(0); start();
-})();
-</script>
-<!-- /FairyGift – Blog Banner Slider (v3.1) -->
+        new ResizeObserver(sizeSlides).observe(viewport);
+        sizeSlides(); go(0); start();
+      });
+    })();
+  </script>
+</body>
+</html>
