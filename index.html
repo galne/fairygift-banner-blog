@@ -3,9 +3,13 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>FairyGift – Blog Banner Slider (v3.2)</title>
+  <title>FairyGift – Blog Banner Slider (v3.3)</title>
   <style>
-    /* ===== FairyGift v3.2 – mobile image near CTA, no cropping ===== */
+    /* ===== FairyGift v3.3 – fix text clipping + safe wrapping ===== */
+
+    /* 0) Border-box μέσα στο namespace για σωστό πλάτος με padding */
+    .fg3-slider, .fg3-slider *, .fg3-slider *::before, .fg3-slider *::after { box-sizing: border-box; }
+
     .fg3-slider{
       --fg3-accent:#6b46ff;
       --fg3-accent2:#ff88cc;
@@ -45,7 +49,6 @@
       height:var(--fg3-h-d);
     }
     @media (max-width:768px){
-      /* σε mobile αφήνουμε το ύψος να προσαρμοστεί */
       .fg3-viewport{height:auto;min-height:220px}
     }
 
@@ -58,9 +61,18 @@
     }
 
     /* Text */
-    .fg3-left h2{margin:0 0 6px;font-weight:800;letter-spacing:-.02em;font-size:clamp(18px,2.1vw,26px);line-height:1.15}
+    .fg3-left{min-width:0;max-width:100%}
+    .fg3-left h2{
+      margin:0 0 6px;font-weight:800;letter-spacing:-.02em;
+      font-size:clamp(18px,2.1vw,26px);line-height:1.15
+    }
     .fg3-lead{margin:0 0 4px;font-size:clamp(14px,1.5vw,16px)}
     .fg3-sub{margin:0;color:var(--fg3-ink-sub);font-size:clamp(13px,1.4vw,15px)}
+
+    /* ασφαλές wrapping για ελληνικά / μεγάλα words */
+    .fg3-left h2, .fg3-lead, .fg3-sub{
+      overflow-wrap:anywhere; word-break:break-word; hyphens:auto;
+    }
 
     /* Button */
     .fg3-btn{
@@ -78,9 +90,8 @@
       filter:drop-shadow(0 8px 18px rgba(0,0,0,.08))
     }
 
-    /* === MOBILE FIXES === */
+    /* === MOBILE === */
     @media (max-width:768px){
-      /* grid χωρίς 1fr -> η εικόνα κάθεται ακριβώς κάτω από CTA */
       .fg3-slide{
         grid-template-columns:1fr;
         grid-template-rows:auto auto;
@@ -93,7 +104,6 @@
       .fg3-sub{font-size:12.5px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
       .fg3-btn{padding:7px 10px;font-size:12.5px;margin-top:8px}
 
-      /* εικόνα κοντά στο κουμπί, χωρίς κόψιμο */
       .fg3-right{
         height:auto;align-items:flex-start;justify-content:flex-start;margin-top:6px;
       }
