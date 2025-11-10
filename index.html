@@ -1,45 +1,56 @@
+
 <!DOCTYPE html>
 <html lang="el">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="color-scheme" content="light">
   <title>FairyGift – Blog Banner Slider (v3.5)</title>
-  <style>
-    /* ===== RESET / EMBED FRIENDLY ===== */
-    html,body{height:auto;min-height:0;margin:0;background:transparent}
-    *{box-sizing:border-box}
 
-    /* ===== THEME (light only, no dark) ===== */
+  <!-- Ίδια γραμματοσειρά με το site (Shopify): Nunito -->
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* reset για iframe/έγγραφο */
+    html, body { margin:0; padding:0; }
+
+    /* ===== FairyGift v3.5 ===== */
+    .fg3-slider, .fg3-slider *, .fg3-slider *::before, .fg3-slider *::after { box-sizing: border-box; }
+
     .fg3-slider{
+      --fg3-font: 'Nunito', sans-serif;   /* ίδιο με το theme */
       --fg3-accent:#6b46ff;
       --fg3-accent2:#ff88cc;
       --fg3-grad:linear-gradient(135deg,var(--fg3-accent),#9c6bff 55%,var(--fg3-accent2));
-      --fg3-bg:#f7f7fb;
+      --fg3-bg:#0b0b12;
       --fg3-card:#fff;
-      --fg3-ink:#17171b;
-      --fg3-ink-sub:#5a5a66;
+      --fg3-ink:#111;
+      --fg3-ink-sub:#666;
       --fg3-r:18px;
-      --fg3-shadow:0 8px 24px rgba(0,0,0,.08);
-      --fg3-interval:2500ms; /* default, θα αντικατασταθεί από data-interval */
+      --fg3-shadow:0 8px 28px rgba(0,0,0,.08);
+      --fg3-interval:4000ms;   /* για το animation των dots (το πραγματικό interval έρχεται από το data-interval) */
       --fg3-h-d:360px;
 
-      /* ΣΗΜΑΝΤΙΚΟ: ΧΩΡΙΣ ΕΞΩΤΕΡΙΚΑ MARGINS */
-      max-width:1060px;
-      margin:0 auto;
-      padding:16px; /* δίνουμε ανάσα εσωτερικά, όχι έξω */
+      font-family: var(--fg3-font);
+      font-weight: 300;         /* baseline = 300 όπως στο site */
+      letter-spacing: .025em;   /* ίδιο mood με το theme */
+      max-width:1060px; margin:20px auto; padding:12px;
       background:
-        radial-gradient(900px 300px at 15% -10%, rgba(107,70,255,.14), transparent 60%),
-        radial-gradient(800px 280px at 85% 110%, rgba(255,136,204,.12), transparent 60%),
+        radial-gradient(900px 300px at 15% -10%, rgba(107,70,255,.18), transparent 60%),
+        radial-gradient(800px 280px at 85% 110%, rgba(255,136,204,.16), transparent 60%),
         var(--fg3-bg);
       border-radius:calc(var(--fg3-r)+8px);
       box-shadow:var(--fg3-shadow);
-      color:#fff;
-      overflow:hidden;
+      color:#fff; overflow:hidden;
+    }
+    @media (prefers-color-scheme: light){
+      .fg3-slider{--fg3-bg:#f7f7fb;--fg3-card:#fff;--fg3-ink:#17171b;--fg3-ink-sub:#5a5a66;box-shadow:0 6px 22px rgba(0,0,0,.06)}
     }
 
     .fg3-viewport{position:relative;background:var(--fg3-card);border-radius:var(--fg3-r);overflow:hidden;height:var(--fg3-h-d)}
-    @media (max-width:768px){.fg3-viewport{height:auto;min-height:220px}}
+    @media (max-width:768px){
+      .fg3-viewport{height:auto;min-height:220px;margin-bottom:0}
+      .fg3-slider{ margin:10px auto 6px; } /* μικρότερο εξωτερικό κενό σε mobile */
+    }
 
     .fg3-track{display:flex;height:100%;will-change:transform;transition:transform .6s cubic-bezier(.22,.8,.24,1)}
     .fg3-slide{
@@ -49,17 +60,45 @@
     }
 
     .fg3-left{min-width:0;max-width:100%}
-    .fg3-left h2{margin:0 0 6px;font-weight:800;letter-spacing:-.02em;font-size:clamp(18px,2.1vw,26px);line-height:1.15}
-    .fg3-lead{margin:0 0 4px;font-size:clamp(14px,1.5vw,16px)}
-    .fg3-sub{margin:0;color:var(--fg3-ink-sub);font-size:clamp(13px,1.4vw,15px)}
+    .fg3-left h2{
+      margin:0 0 6px;
+      font-weight:700;              /* C: τίτλος = 700 */
+      letter-spacing:-.02em;
+      font-size:clamp(18px,2.1vw,26px);
+      line-height:1.15
+    }
+    .fg3-lead{
+      margin:0 0 4px;
+      font-size:clamp(14px,1.5vw,16px);
+      font-weight:400;              /* C: lead = 400 */
+    }
+    .fg3-sub{
+      margin:0;
+      color:var(--fg3-ink-sub);
+      font-size:clamp(13px,1.4vw,15px);
+      font-weight:300;              /* C: sub/body = 300 */
+    }
     .fg3-left h2,.fg3-lead,.fg3-sub{overflow-wrap:anywhere;word-break:break-word;hyphens:auto}
 
-    .fg3-btn{display:inline-block;margin-top:10px;background:var(--fg3-grad);color:#fff;text-decoration:none;border:none;border-radius:999px;padding:9px 12px;font-weight:800;box-shadow:0 6px 16px rgba(107,70,255,.28);transition:transform .18s, box-shadow .18s}
+    .fg3-btn{
+      display:inline-block;margin-top:10px;
+      background:var(--fg3-grad);color:#fff;text-decoration:none;border:none;border-radius:999px;
+      padding:9px 12px;font-weight:700;       /* διαθέσιμο weight */
+      box-shadow:0 6px 16px rgba(107,70,255,.28);
+      transition:transform .18s, box-shadow .18s
+    }
     .fg3-btn:hover{transform:translateY(-1px);box-shadow:0 10px 22px rgba(107,70,255,.36)}
     .fg3-btn-ghost{background:#fff;color:var(--fg3-accent);outline:2px solid rgba(107,70,255,.25)}
 
     .fg3-right{display:flex;align-items:center;justify-content:center;height:100%}
-    .fg3-right img{max-width:100%;max-height:100%;height:auto;object-fit:contain;border-radius:12px;filter:drop-shadow(0 8px 18px rgba(0,0,0,.08))}
+    /* Σταθερά στρογγυλή εικόνα σε όλα τα breakpoints */
+    .fg3-slider .fg3-right img{
+      max-width:100%;max-height:100%;height:auto;object-fit:contain;
+      border-radius:14px !important;
+      filter:drop-shadow(0 8px 18px rgba(0,0,0,.08));
+      background: transparent;
+      display:block;
+    }
 
     @media (max-width:768px){
       .fg3-slide{grid-template-columns:1fr;grid-template-rows:auto auto;align-content:start;gap:8px;padding:12px}
@@ -68,11 +107,11 @@
       .fg3-sub{font-size:12.5px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
       .fg3-btn{padding:7px 10px;font-size:12.5px;margin-top:8px}
       .fg3-right{height:auto;align-items:flex-start;justify-content:flex-start;margin-top:6px}
-      .fg3-right img{width:100%;height:auto;max-height:clamp(120px, 40vw, 180px);object-fit:contain}
+      .fg3-slider .fg3-right img{width:100%;height:auto;max-height:clamp(120px, 40vw, 180px);object-fit:contain;border-radius:14px !important}
       .fg3-arrow{display:none}
     }
 
-    /* Arrows – lower (top 55%) */
+    /* Arrows – χαμηλότερα: top 55% (~45% από κάτω) */
     .fg3-arrow{
       position:absolute;top:55%;transform:translateY(-50%);
       width:38px;height:38px;border:none;border-radius:50%;
@@ -82,8 +121,9 @@
     .fg3-arrow:hover{transform:translateY(-50%) scale(1.05)}
     .fg3-prev{left:10px}.fg3-next{right:10px}
 
-    .fg3-dots{display:flex;justify-content:center;gap:10px;margin:12px auto 2px}
-    .fg3-dot{--size:10px;position:relative;width:calc(var(--size)*5);height:var(--size);background:rgba(0,0,0,.06);border:none;border-radius:999px;cursor:pointer;overflow:hidden}
+    /* Dots – σφιχτά για μικρότερο κάτω κενό */
+    .fg3-dots{display:flex;justify-content:center;gap:10px;margin:8px auto 0}
+    .fg3-dot{--size:10px;position:relative;width:calc(var(--size)*5);height:var(--size);background:rgba(255,255,255,.45);border:none;border-radius:999px;cursor:pointer;overflow:hidden}
     .fg3-dot .fg3-fill{position:absolute;inset:0;background:var(--fg3-grad);transform-origin:left;transform:scaleX(0)}
     .fg3-dot.is-active .fg3-fill{transform:scaleX(1);transition:transform var(--fg3-interval) linear}
     .fg3-dot:focus-visible{outline:2px solid var(--fg3-accent)}
@@ -94,7 +134,8 @@
 <body>
 
   <!-- ===== SLIDER START ===== -->
-  <div class="fg3-slider" lang="el" dir="ltr" data-autoplay="true" data-interval="2500" aria-roledescription="carousel">
+  <!-- Για 2.5s αργότερα: άλλαξε μόνο αυτό σε data-interval="2500" -->
+  <div class="fg3-slider" lang="el" dir="ltr" data-autoplay="true" data-interval="1800" aria-roledescription="carousel">
     <div class="fg3-viewport" tabindex="0" aria-live="polite">
       <div class="fg3-track">
         <!-- Slide 1 -->
@@ -208,17 +249,8 @@
   <!-- ===== SLIDER END ===== -->
 
   <script>
-    // Init ΟΛΑ τα sliders με κλάση .fg3-slider
     (function initFG3(){
       const sliders = document.querySelectorAll('.fg3-slider');
-      const postH = () => {
-        const H = Math.max(
-          document.body.scrollHeight,
-          document.documentElement.scrollHeight
-        ) + 6; // +6px για σκιά/στρογγύλεμα
-        parent.postMessage({type:'FG3_HEIGHT', height:H}, '*');
-      };
-
       sliders.forEach(slider => {
         const viewport = slider.querySelector('.fg3-viewport');
         const track = slider.querySelector('.fg3-track');
@@ -227,7 +259,7 @@
         const prev = slider.querySelector('.fg3-prev');
         const next = slider.querySelector('.fg3-next');
         const autoplay = slider.dataset.autoplay === 'true';
-        const interval = +slider.dataset.interval || 2500;
+        const interval = +slider.dataset.interval || 4000;
         slider.style.setProperty('--fg3-interval', interval + 'ms');
 
         let i = 0, timer = null, paused = false, startX = 0, dx = 0, slideW = 0;
@@ -237,7 +269,6 @@
           slides.forEach(s => s.style.width = slideW + 'px');
           track.style.width = (slideW * slides.length) + 'px';
           track.style.transform = `translate3d(${-i * slideW}px,0,0)`;
-          postH();
         };
 
         const go = n => {
@@ -247,7 +278,6 @@
             d.classList.toggle('is-active', idx === i);
             d.setAttribute('aria-selected', idx === i ? 'true' : 'false');
           });
-          postH();
         };
 
         const start = () => { if (!autoplay || paused) return; stop(); timer = setInterval(() => go(i+1), interval); };
@@ -277,9 +307,6 @@
         new ResizeObserver(sizeSlides).observe(viewport);
         sizeSlides(); go(0); start();
       });
-
-      window.addEventListener('load', postH);
-      window.addEventListener('resize', () => setTimeout(postH, 50));
     })();
   </script>
 </body>
