@@ -3,42 +3,47 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>FairyGift – Blog Banner Slider</title>
-
+  <meta name="color-scheme" content="light">
+  <title>FairyGift – Blog Banner Slider (v3.5)</title>
   <style>
-    /* ===== Base ===== */
-    html,body{margin:0;padding:0}
-    body{background:#f7f7fb;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,Arial,sans-serif}
+    /* ===== RESET / EMBED FRIENDLY ===== */
+    html,body{height:auto;min-height:0;margin:0;background:transparent}
+    *{box-sizing:border-box}
 
-    /* ===== FairyGift v3.5 ===== */
-    .fg3-slider, .fg3-slider *, .fg3-slider *::before, .fg3-slider *::after { box-sizing: border-box; }
-
+    /* ===== THEME (light only, no dark) ===== */
     .fg3-slider{
       --fg3-accent:#6b46ff;
       --fg3-accent2:#ff88cc;
       --fg3-grad:linear-gradient(135deg,var(--fg3-accent),#9c6bff 55%,var(--fg3-accent2));
-      --fg3-bg:#0b0b12;
+      --fg3-bg:#f7f7fb;
       --fg3-card:#fff;
       --fg3-ink:#17171b;
       --fg3-ink-sub:#5a5a66;
       --fg3-r:18px;
-      --fg3-shadow:0 8px 28px rgba(0,0,0,.08);
-      --fg3-interval:2500ms; /* default 2.5s (θα το παρακάμψει το data-interval αν δοθεί) */
+      --fg3-shadow:0 8px 24px rgba(0,0,0,.08);
+      --fg3-interval:2500ms; /* default, θα αντικατασταθεί από data-interval */
+      --fg3-h-d:360px;
 
-      max-width:1060px;margin:16px auto;padding:12px;
+      /* ΣΗΜΑΝΤΙΚΟ: ΧΩΡΙΣ ΕΞΩΤΕΡΙΚΑ MARGINS */
+      max-width:1060px;
+      margin:0 auto;
+      padding:16px; /* δίνουμε ανάσα εσωτερικά, όχι έξω */
       background:
-        radial-gradient(900px 300px at 15% -10%, rgba(107,70,255,.18), transparent 60%),
-        radial-gradient(800px 280px at 85% 110%, rgba(255,136,204,.16), transparent 60%),
+        radial-gradient(900px 300px at 15% -10%, rgba(107,70,255,.14), transparent 60%),
+        radial-gradient(800px 280px at 85% 110%, rgba(255,136,204,.12), transparent 60%),
         var(--fg3-bg);
       border-radius:calc(var(--fg3-r)+8px);
       box-shadow:var(--fg3-shadow);
-      color:#fff;overflow:hidden;
+      color:#fff;
+      overflow:hidden;
     }
 
-    .fg3-viewport{position:relative;background:var(--fg3-card);border-radius:var(--fg3-r);overflow:hidden}
+    .fg3-viewport{position:relative;background:var(--fg3-card);border-radius:var(--fg3-r);overflow:hidden;height:var(--fg3-h-d)}
+    @media (max-width:768px){.fg3-viewport{height:auto;min-height:220px}}
+
     .fg3-track{display:flex;height:100%;will-change:transform;transition:transform .6s cubic-bezier(.22,.8,.24,1)}
     .fg3-slide{
-      flex:0 0 auto;min-height:320px;
+      flex:0 0 auto;height:100%;
       display:grid;grid-template-columns:1.05fr .95fr;gap:16px;align-items:center;
       padding:20px;color:var(--fg3-ink)
     }
@@ -56,7 +61,6 @@
     .fg3-right{display:flex;align-items:center;justify-content:center;height:100%}
     .fg3-right img{max-width:100%;max-height:100%;height:auto;object-fit:contain;border-radius:12px;filter:drop-shadow(0 8px 18px rgba(0,0,0,.08))}
 
-    /* Mobile */
     @media (max-width:768px){
       .fg3-slide{grid-template-columns:1fr;grid-template-rows:auto auto;align-content:start;gap:8px;padding:12px}
       .fg3-left h2{font-size:16px}
@@ -68,7 +72,7 @@
       .fg3-arrow{display:none}
     }
 
-    /* Arrows – χαμηλότερα: top 55% (~45% από κάτω) */
+    /* Arrows – lower (top 55%) */
     .fg3-arrow{
       position:absolute;top:55%;transform:translateY(-50%);
       width:38px;height:38px;border:none;border-radius:50%;
@@ -79,13 +83,12 @@
     .fg3-prev{left:10px}.fg3-next{right:10px}
 
     .fg3-dots{display:flex;justify-content:center;gap:10px;margin:12px auto 2px}
-    .fg3-dot{--size:10px;position:relative;width:calc(var(--size)*5);height:var(--size);background:rgba(255,255,255,.45);border:none;border-radius:999px;cursor:pointer;overflow:hidden}
+    .fg3-dot{--size:10px;position:relative;width:calc(var(--size)*5);height:var(--size);background:rgba(0,0,0,.06);border:none;border-radius:999px;cursor:pointer;overflow:hidden}
     .fg3-dot .fg3-fill{position:absolute;inset:0;background:var(--fg3-grad);transform-origin:left;transform:scaleX(0)}
     .fg3-dot.is-active .fg3-fill{transform:scaleX(1);transition:transform var(--fg3-interval) linear}
+    .fg3-dot:focus-visible{outline:2px solid var(--fg3-accent)}
 
-    @media (prefers-reduced-motion: reduce){
-      .fg3-track,.fg3-dot .fg3-fill{transition:none !important}
-    }
+    @media (prefers-reduced-motion: reduce){.fg3-track,.fg3-dot .fg3-fill{transition:none !important}}
   </style>
 </head>
 <body>
@@ -163,7 +166,7 @@
         <section class="fg3-slide" aria-roledescription="slide" aria-label="6">
           <div class="fg3-left">
             <h2>🧡 Ατάκες καθημερινότητας, τυπωμένες με αγάπη</h2>
-            <p class="fg3-lead">Δώρα για μαμάδες &amp; μπαμπάδες—μπλουζάκια, θερμός και πάνινες τσάντες που “μιλάνε”!</p>
+            <p class="fg3-lead">Αστεία &amp; αληθινά δώρα για μαμάδες και μπαμπάδες—μπλουζάκια, θερμός και πάνινες τσάντες που “μιλάνε”!</p>
             <p class="fg3-sub">Διάλεξε το αγαπημένο σου σχέδιο και κάνε δώρο που θα φοράνε κάθε μέρα.</p>
             <a class="fg3-btn fg3-btn-ghost" href="https://fairygift.gr/collections/tshirt-merch-doro-mama-mpampa?utm_source=iframe_code_blog_article&utm_campaign=merchandising" target="_blank" rel="noopener">👀 Θέλω να τα δω</a>
           </div>
@@ -191,7 +194,7 @@
       <button class="fg3-arrow fg3-next" aria-label="Επόμενο">›</button>
     </div>
 
-    <!-- Dots (7 slides) -->
+    <!-- Dots -->
     <div class="fg3-dots" role="tablist" aria-label="Πλοήγηση slides">
       <button class="fg3-dot is-active" role="tab" aria-selected="true"><span class="fg3-fill"></span></button>
       <button class="fg3-dot" role="tab" aria-selected="false"><span class="fg3-fill"></span></button>
@@ -205,9 +208,17 @@
   <!-- ===== SLIDER END ===== -->
 
   <script>
-    // ===== Slider init (ασφαλές για iframes, multi-instance) =====
+    // Init ΟΛΑ τα sliders με κλάση .fg3-slider
     (function initFG3(){
       const sliders = document.querySelectorAll('.fg3-slider');
+      const postH = () => {
+        const H = Math.max(
+          document.body.scrollHeight,
+          document.documentElement.scrollHeight
+        ) + 6; // +6px για σκιά/στρογγύλεμα
+        parent.postMessage({type:'FG3_HEIGHT', height:H}, '*');
+      };
+
       sliders.forEach(slider => {
         const viewport = slider.querySelector('.fg3-viewport');
         const track = slider.querySelector('.fg3-track');
@@ -226,7 +237,7 @@
           slides.forEach(s => s.style.width = slideW + 'px');
           track.style.width = (slideW * slides.length) + 'px';
           track.style.transform = `translate3d(${-i * slideW}px,0,0)`;
-          requestAnimationFrame(postSize); // ενημέρωσε γονέα για νέο ύψος
+          postH();
         };
 
         const go = n => {
@@ -236,7 +247,7 @@
             d.classList.toggle('is-active', idx === i);
             d.setAttribute('aria-selected', idx === i ? 'true' : 'false');
           });
-          requestAnimationFrame(postSize);
+          postH();
         };
 
         const start = () => { if (!autoplay || paused) return; stop(); timer = setInterval(() => go(i+1), interval); };
@@ -264,27 +275,12 @@
         });
 
         new ResizeObserver(sizeSlides).observe(viewport);
-        // όταν φορτώσουν εικόνες, ξαναμέτρησε ύψος
-        slider.querySelectorAll('img').forEach(img=>{
-          if(img.complete) return;
-          img.addEventListener('load', ()=>postSize(), {once:true});
-        });
-
         sizeSlides(); go(0); start();
       });
-    })();
 
-    // ===== Auto-height προς το parent (Shopify) =====
-    function postSize(){
-      try{
-        const h = document.documentElement.scrollHeight;
-        parent.postMessage({type:'FG3_HEIGHT', height:h}, '*');
-      }catch(_){}
-    }
-    // αρχικές/επαναλαμβανόμενες αποστολές για σιγουριά
-    window.addEventListener('load', ()=>{ postSize(); setTimeout(postSize,150); setTimeout(postSize,400); });
-    new ResizeObserver(()=>postSize()).observe(document.documentElement);
-    document.fonts && document.fonts.ready && document.fonts.ready.then(postSize);
+      window.addEventListener('load', postH);
+      window.addEventListener('resize', () => setTimeout(postH, 50));
+    })();
   </script>
 </body>
 </html>
